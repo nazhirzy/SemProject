@@ -14,15 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import com.secj3303.model.Person;
-import com.secj3303.model.Program;
 
 @Repository
 public class PersonDaoHibernate implements PersonDao {
     @Autowired
     private org.hibernate.SessionFactory sessionFactory;
 
-    @Autowired
-    private EnrollmentDaoHibernate eDao; 
 
 
     private Session openSession() {
@@ -73,36 +70,6 @@ public class PersonDaoHibernate implements PersonDao {
         return session.get(Person.class, id);
     }
 
-    @Override
-public void delete(int id) {
-    eDao.deleteEnrollmentsByMemberId(id);
-    
-    Session session = openSession();
-    session.beginTransaction();
-    
-    try {
-        // 2. Retrieve and delete the main Person record.
-        Person personToDelete = session.get(Person.class, id);
-        
-        if (personToDelete != null) {
-            session.delete(personToDelete);
-        }
-        
-        session.getTransaction().commit();
-        
-    } catch (Exception e) {
-        if (session.getTransaction() != null) {
-            session.getTransaction().rollback();
-        }
-        System.err.println("Final person delete failed for ID " + id);
-        e.printStackTrace();
-        
-    } finally {
-        if (session != null && session.isOpen()) {
-            session.close();
-        }
-    }
-}
 
     @Override
     public Person findByUsername(String name){

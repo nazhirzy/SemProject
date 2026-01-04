@@ -1,9 +1,7 @@
 package com.secj3303.controller;
 
 import com.secj3303.dao.PersonDaoHibernate;
-import com.secj3303.dao.ProgramDao;
 import com.secj3303.model.Person;
-import com.secj3303.model.Program;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +14,6 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    private ProgramDao programDAO;
 
     @Autowired
     private PersonDaoHibernate personDao;
@@ -44,30 +40,7 @@ public class AdminController {
         return "admin-user-list";
 
     }
-    @GetMapping("/users/delete")
-    public String deleteUser(@RequestParam("userId") int id, HttpSession session) {
-        if (!isAdmin(session)) return "redirect:/login";
 
-        personDao.delete(id);
-        return "redirect:/admin/users";
-    }
-
-    @GetMapping("/programs")
-    public String listPrograms(HttpSession session, Model model) {
-        if (!isAdmin(session)) return "redirect:/login";
-
-        List<Program> programs = programDAO.findAll();
-        model.addAttribute("programs", programs);
-        return "admin-program-list";
-    }
-
-    @GetMapping("/programs/delete")
-    public String deleteProgram(@RequestParam("programId") int id, HttpSession session) {
-        if (!isAdmin(session)) return "redirect:/login";
-
-        programDAO.delete(id);
-        return "redirect:/admin/programs";
-    }
 
 
 }
