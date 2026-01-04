@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Program</title>
+</head>
+<body>
+
+    <h1>Assign Program to Member</h1>
+
+    <form th:action="@{/trainer/assignProgram}" method="post">
+        
+        <label for="memberSelect">Select Member:</label>
+        <select id="memberSelect" name="memberId" required>
+            <option th:each="member : ${allMembers}" 
+                    th:value="${member.id}" 
+                    th:text="${member.name} + ' (' + ${member.id} + ')'">Member Name</option>
+        </select>
+        
+        <br><br>
+
+        <label for="programSelect">Select Program:</label>
+        <select id="programSelect" name="programId" required>
+            <option th:each="program : ${allPrograms}" 
+                    th:value="${program.id}" 
+                    th:text="${program.name}">Program Name</option>
+        </select>
+        
+        <br><br>
+
+        <button type="submit">Assign Program</button>
+    </form>
+
+</body>
+</html>

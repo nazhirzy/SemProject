@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Member Dashboard</title>
+</head>
+<body>
+    <h1>Welcome Member</h1>
+
+<ul>
+<li><a th:href="@{/member/bmi-form}">Enter BMI</a></li>
+<li><a th:href="@{/member/bmi-history}">View BMI History</a></li>
+<li><a th:href="@{/member/programs}">Browse Programs</a></li>
+<li><a th:href="@{/member/my-programs}">Workout plans</a></li>
+<li><a th:href="@{/logout}">Logout</a></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Program List</title>
+</head>
+<body>
+    <h1>All Programs</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Duration</th>
+                <th>Monthly Fee</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="program : ${programs}">
+                <td th:text="${program.id}">1</td>
+                <td th:text="${program.name}">Sample Name</td>
+                <td th:text="${program.description}">Description</td>
+                <td th:text="${program.durationWeeks}">Duration</td>
+                <td th:text="${program.monthlyFee}">Fee</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/trainer/dashboard}">Back to dashboard</a>
+</body>
+</html>

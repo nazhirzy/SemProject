@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+
+<h1>This is dashboard</h1>
+
+<p>
+    Logged in as:
+    <strong sec:authentication="name"></strong>
+</p>
+
+<p>
+    Roles:
+    <span sec:authentication="authorities"></span>
+</p>
+
+
+<a th:href="@{/logout}">Logout</a>
+
+</body>
+</html>

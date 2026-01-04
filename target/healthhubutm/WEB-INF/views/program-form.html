@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Program Form</title>
+</head>
+<body>
+
+<h2>Program Form</h2>
+
+<form th:action="@{/trainer/save}" th:object="${program}" method="post">
+
+    <input type="hidden" th:field="*{id}" />
+
+    Name: <input type="text" th:field="*{name}" /><br/>
+    description: <input type="text" th:field="*{description}" /><br/>
+    duration: <input type="number" step="0.1" th:field="*{durationWeeks}" /><br/>
+    Fee: <input type="number" step="0.01" th:field="*{monthlyFee}" /><br/>
+
+    <button type="submit">Save</button>
+
+</form>
+
+<br/>
+<a th:href="@{/trainer/dashboard}">Back to dashboard</a>
+
+</body>
+</html>

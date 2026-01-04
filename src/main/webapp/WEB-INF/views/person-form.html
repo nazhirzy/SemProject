@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Person Form</title>
+</head>
+<body>
+
+<h2>Person Form</h2>
+
+<form th:action="@{/person/insert}" th:object="${person}" method="post">
+
+    <input type="hidden" th:field="*{id}" />
+
+    Name: <input type="text" th:field="*{name}" /><br/>
+    YOB: <input type="number" th:field="*{yob}" /><br/>
+    Weight: <input type="number" step="0.1" th:field="*{weight}" /><br/>
+    Height: <input type="number" step="0.01" th:field="*{height}" /><br/>
+
+    <button type="submit">Save</button>
+
+</form>
+
+<br/>
+<a th:href="@{/person/list}">Back to list</a>
+
+</body>
+</html>

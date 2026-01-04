@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BMI Result</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f6f8fb;
+    margin: 0;
+    padding: 40px;
+  }
+  .card {
+    max-width: 520px;
+    margin: auto;
+    background: #fff;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(0,0,0,.08);
+  }
+  h1 {
+    text-align: center;
+    margin-top: 0;
+  }
+  .kv {
+    display: flex;
+    justify-content: space-between;
+    margin: .35rem 0;
+  }
+  .big {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  a.btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: .6rem .8rem;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+  }
+</style>
+</head>
+
+<body>
+<div class="card">
+  <h1>Your BMI Result</h1>
+
+  <p>Your BMI is: <span th:text="${bmiValue}">0.0</span></p>
+
+  <p>Category: 
+    <span th:text = "${bmiCat}"></span></p>
+
+
+  <a th:href="@{/member/dashboard}">Back to Dashboard</a>
+  <a th:href="@{/member/bmi-form}" class="button">Calculate Again</a>
+  <a th:href="@{/member/bmi-history}" class="button">View History</a>
+</div>
+
+
+</body>
+</html>
