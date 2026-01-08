@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Otawell - Resource Detail</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .content {
+            display: flex;
+            padding: 40px;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .illustration {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .illustration img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-panel {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .panel-title {
+            font-size: 36px;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+        }
+
+        .section-content {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .symptoms-list {
+            padding-left: 20px;
+        }
+
+        .symptoms-list li {
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .disclaimer {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Otawell</div>
+        <div class="action-icons">
+            <a href="#" class="icon">💬</a>
+            <a href="#" class="icon">
+                🔔
+                <div class="notification-badge">1</div>
+            </a>
+            <a href="#" class="icon">☰</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="illustration">
+            <img th:src="${module.illustration}" th:alt="${module.title} illustration"/>
+        </div>
+
+        <div class="info-panel">
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> This is for informational purposes only. For medical advice or a diagnosis, consult a professional.
+            </div>
+
+            <h1 class="panel-title" th:text="${module.title}">Depression</h1>
+
+            <div class="section-content" th:text="${module.description}">
+                Depression is a common mental health disorder characterized by persistent sadness, loss of interest, and interference with daily life including sleep, appetite, and fatigue. It is a treatable condition resulting from biological, psychological, and social factors.
+            </div>
+
+            <h2 class="section-title">Key Characteristics</h2>
+            <ul class="symptoms-list">
+                <li>Persistent sadness: Intense feelings of emptiness lasting at least two weeks</li>
+                <li>Loss of interest: Diminished ability to find pleasure in once-enjoyable activities</li>
+                <li>Physical symptoms: Changes in sleep patterns, appetite, and energy levels</li>
+            </ul>
+
+            <a href="/resources" class="back-btn">← Back to Resources</a>
+        </div>
+    </div>
+</body>
+</html>

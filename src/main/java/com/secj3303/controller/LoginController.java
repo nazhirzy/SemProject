@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.secj3303.dao.PersonDaoHibernate;
 import com.secj3303.model.Person;
@@ -26,10 +25,15 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@RequestParam String name, @RequestParam String password, HttpSession session, Model model){
         String role = null;
-        Person p = pDao.findByUsernameAndPassword(name, password);
+        Person p = pDao.findByUsername(name);
 
         if (p == null) {
-            model.addAttribute("error", "Invalid login");
+            model.addAttribute("error", "Invalid username");
+            return "login";
+        }
+
+        if (!p.getPassword().equals(password)) {
+            model.addAttribute("error", "Invalid password");
             return "login";
         }
 

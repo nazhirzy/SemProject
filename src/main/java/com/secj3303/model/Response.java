@@ -10,16 +10,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "feedback")
-public class Feedback {
+@Table(name = "responses")
+public class Response {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @Column(nullable = false)
-    private String comment;
+    @Column(columnDefinition = "TEXT")
+    private String answerValue;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id", nullable = false)
+    private Question question;
 
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
+
 }

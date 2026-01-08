@@ -42,7 +42,6 @@ public class PersonDaoHibernate implements PersonDao {
     @Override
     @Transactional
     public List<Person> findAllMembers() {
-        // HQL query to select all Person entities where the role field equals 'member'
         Query<Person> query = openSession().createQuery(
             "from Person p where p.role = 'member'", Person.class);
         return query.getResultList();
