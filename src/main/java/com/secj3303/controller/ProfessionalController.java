@@ -13,14 +13,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.secj3303.dao.PersonDaoHibernate;
 import com.secj3303.dao.SessionDaoHibernate;
+import com.secj3303.dao.SurveyDao;
 import com.secj3303.model.Person;
 import com.secj3303.model.SessionStatus;
 import com.secj3303.model.Sessions;
+import com.secj3303.model.Survey;
+import com.secj3303.model.SurveyQuestion;
 
 @Controller
 @RequestMapping("/professional")
@@ -30,6 +34,9 @@ public class ProfessionalController {
 
     @Autowired
     private PersonDaoHibernate pDao;
+
+    @Autowired
+    private SurveyDao sDao;
 
     @GetMapping("/home")
     public String dashboard(HttpSession session, Model model){
@@ -70,5 +77,49 @@ public class ProfessionalController {
         model.addAttribute("schedule", mySchedule);
         
         return "session/my-schedule";
+    }
+
+    // SURVEY
+
+    @GetMapping("/survey/create")
+    public String getCreateForm(Model model) {
+        model.addAttribute("survey", new Survey());
+        return "survey/create-survey";
+    }
+
+    @PostMapping("/survey/save")
+    public String saveSurvey(@ModelAttribute Survey survey) {
+        sDao.saveSurvey(survey);
+        return "redirect:/professional/survey/edit/" + survey.getId() + "/questions";
+    }
+
+    @GetMapping("/survey/edit/{id}/questions")
+    public String showAddQuestions(@PathVariable int id, Model model) {
+        Survey survey = sDao.findSurveyById(id);
+        model.addAttribute("survey", survey);
+        model.addAttribute("newQuestion", new SurveyQuestion());
+        return "survey/manage-questions";
+    }
+
+    @PostMapping("/survey/edit/{id}/questions/add")
+    public String addQuestion(@PathVariable int id, @ModelAttribute SurveyQuestion question) {
+        Survey survey = sDao.findSurveyById(id);
+        question.setSurvey(survey);
+        survey.getQuestions().add(question);
+        sDao.saveQuestion(question);
+        return "redirect:/professional/survey/edit/" + id + "/questions";
+    }
+
+    @GetMapping("/survey/manage")
+    public String manageSurveys(Model model) {
+        List<Survey> surveys = sDao.findAllSurveys();
+        model.addAttribute("surveys", surveys);
+        return "survey/manage-list";
+    }
+
+    @PostMapping("/survey/delete/{id}")
+    public String deleteSurvey(@PathVariable int id) {
+        sDao.deleteSurvey(id);
+        return "redirect:/professional/survey/manage";
     }
 }

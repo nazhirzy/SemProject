@@ -1,0 +1,18 @@
+<form th:action="@{/professional/survey/save}" th:object="${survey}" method="post">
+    <div>
+        <label>Survey Title:</label>
+        <input type="text" th:field="*{title}" required />
+    </div>
+    
+    <br/>
+
+    <div>
+        <label>Description:</label>
+        <textarea th:field="*{description}" rows="4" cols="50" 
+                  placeholder="Enter the purpose of this survey..."></textarea>
+    </div>
+
+    <button type="submit">Create Survey & Add Questions</button>
+
+    <a th:href="@{/professional/home}">Back to Home</a>
+</form>

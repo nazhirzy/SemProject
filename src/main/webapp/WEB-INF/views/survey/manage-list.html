@@ -1,0 +1,28 @@
+<h2>Manage All Surveys</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Questions Count</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="s : ${surveys}">
+            <td th:text="${s.title}"></td>
+            <td th:text="${s.description}"></td>
+            <td th:text="${s.questions.size()}"></td>
+            <td>
+                <form th:action="@{/professional/survey/delete/{id}(id=${s.id})}" 
+                      method="post" style="display:inline;"
+                      onsubmit="return confirm('Are you sure? This will delete all questions and responses!');">
+                    <button type="submit" style="color:red;">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br/>
+<a th:href="@{/professional/survey/create}">+ Create New Survey</a>
+<a th:href="@{/professional/home}">Back to Home</a>
