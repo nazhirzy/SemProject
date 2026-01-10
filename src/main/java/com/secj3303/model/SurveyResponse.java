@@ -17,11 +17,11 @@ public class SurveyResponse {
     private int id;
 
     @Column(nullable = false)
-    private int answerValue;
+    private int totalScore = 0;
 
     @ManyToOne
-    @JoinColumn(name = "question_id", nullable = false)
-    private SurveyQuestion question;
+    @JoinColumn(name = "survey_id", nullable = false)
+    private Survey survey;
 
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
@@ -29,20 +29,17 @@ public class SurveyResponse {
     
     public SurveyResponse(){}
 
-    public SurveyResponse(int value, SurveyQuestion question, Person person) {
-    this.answerValue = value;
-    this.question = question;
-    this.person = person;
+    public SurveyResponse(Survey survey, Person person, int initialScore) {
+        this.survey = survey;
+        this.person = person;
+        this.totalScore = initialScore;
     }
-
-    public int getId() {return id;}
-    public int getAnswerValue() {return answerValue;}
-    public SurveyQuestion getQuestion() {return question;}
-    public Person getPerson() {return person;}
-
-    public void setId(int id) {this.id = id;}
-    public void setAnswerValue(int answerValue) {this.answerValue = answerValue;}
-    public void setPerson(Person person) {this.person = person;}
-    public void setQuestion(SurveyQuestion question) {this.question = question;}
+    public int getId() { return id; }
+    public int getTotalScore() { return totalScore; }
+    public void setTotalScore(int totalScore) { this.totalScore = totalScore; }
+    public Survey getSurvey() { return survey; }
+    public void setSurvey(Survey survey) { this.survey = survey; }
+    public Person getPerson() { return person; }
+    public void setPerson(Person person) { this.person = person; }
 
 }

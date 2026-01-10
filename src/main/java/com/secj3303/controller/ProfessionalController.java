@@ -109,4 +109,17 @@ public class ProfessionalController {
         sDao.saveQuestion(question);
         return "redirect:/professional/survey/edit/" + id + "/questions";
     }
+
+    @GetMapping("/survey/manage")
+    public String manageSurveys(Model model) {
+        List<Survey> surveys = sDao.findAllSurveys();
+        model.addAttribute("surveys", surveys);
+        return "survey/manage-list";
+    }
+
+    @PostMapping("/survey/delete/{id}")
+    public String deleteSurvey(@PathVariable int id) {
+        sDao.deleteSurvey(id);
+        return "redirect:/professional/survey/manage";
+    }
 }

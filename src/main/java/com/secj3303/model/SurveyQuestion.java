@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class SurveyQuestion {
@@ -24,9 +23,6 @@ public class SurveyQuestion {
 
     @Column(nullable = false)
     private String questionText;
-
-    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-    private List<SurveyResponse> responses;
 
     public SurveyQuestion() {}
 

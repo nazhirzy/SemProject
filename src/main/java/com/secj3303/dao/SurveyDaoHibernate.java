@@ -7,9 +7,9 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.secj3303.model.Sessions;
 import com.secj3303.model.Survey;
 import com.secj3303.model.SurveyQuestion;
+import com.secj3303.model.SurveyResponse;
 
 @Repository
 public class SurveyDaoHibernate implements SurveyDao {
@@ -23,15 +23,25 @@ public class SurveyDaoHibernate implements SurveyDao {
 
     @Override
     public void saveSurvey(Survey s) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = openSession()) {
             Transaction tx = session.beginTransaction();
             session.saveOrUpdate(s);
             tx.commit();
         }
     }
+
+    @Override
+    public void saveResponse(SurveyResponse s) {
+        try (Session session = openSession()) {
+            Transaction tx = session.beginTransaction();
+            session.saveOrUpdate(s);
+            tx.commit();
+        }
+    }
+
     @Override
     public void saveQuestion(SurveyQuestion q) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = openSession()) {
             Transaction tx = session.beginTransaction();
             session.save(q);
             tx.commit();
@@ -40,7 +50,7 @@ public class SurveyDaoHibernate implements SurveyDao {
 
     @Override
     public Survey findSurveyById(int id) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = openSession()) {
         return session.createQuery(
             "SELECT s FROM Survey s " +
             "LEFT JOIN FETCH s.questions " + 
@@ -54,9 +64,25 @@ public class SurveyDaoHibernate implements SurveyDao {
     public List<Survey> findAllSurveys() {
         try (Session session = openSession()) {
             return session.createQuery(
-                "SELECT s FROM Survey s",
+                "SELECT DISTINCT s FROM Survey s LEFT JOIN FETCH s.questions", 
                 Survey.class)
                 .getResultList();
+        }
+    }
+
+    @Override
+    public void deleteSurvey(int id) {
+        Transaction tx = null;
+        try (Session session = sessionFactory.openSession()) {
+            tx = session.beginTransaction();
+            Survey s = session.get(Survey.class, id);
+            if (s != null) {
+                session.delete(s);
+            }
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            throw e;
         }
     }
 }
