@@ -5,6 +5,7 @@
 <h2>User Home</h2>
 <p>Welcome, <span th:text="${#authentication.name}"></span>!</p>
 <p>Regular user page.</p>
+<a th:href="@{/chat/peer-to-peer}">Go to Peer-to-Peer Chat</a><br/>
 <a th:href="@{/logout}">Logout</a>
 </body>
 </html>
