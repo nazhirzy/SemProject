@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\controller\LoginController.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\model\Survey.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\controller\MemberController.java
@@ -24,3 +25,32 @@ C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\contr
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\services\CustomUserDetailsService.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\dao\PersonDaoHibernate.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\model\Feedback.java
+=======
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\model\Feedback.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\model\Person.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\controller\LoginController.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\dao\SurveyDaoHibernate.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\controller\AdminController.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\dao\ModuleDaoHibernate.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\dao\PersonDao.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\dao\SurveyDao.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\controller\dashboard.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\model\Sessions.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\controller\PeerToPeerController.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\dao\PersonDaoHibernate.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\dao\ResponseDao.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\model\Module.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\security\SecurityConfig.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\controller\MemberController.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\model\SurveyQuestion.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\dao\ResponseDaoHibernate.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\controller\RegisterController.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\dao\SessionDao.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\model\Survey.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\services\CustomUserDetailsService.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\model\SurveyResponse.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\controller\ResourceController.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\controller\ProfessionalController.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\dao\ModuleDao.java
+C:\Users\User\Desktop\ipProj\SemProject\src\main\java\com\secj3303\dao\SessionDaoHibernate.java
+>>>>>>> 04bc5f98bb5f4b8154a85656118a0288ad92c38c

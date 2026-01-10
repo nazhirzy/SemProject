@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body { background: linear-gradient(to bottom right, #1a0033, #4b0082); color: white; font-family: sans-serif; height: 100vh; margin: 0; }
+        .glass-container { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 40px; width: 450px; position: absolute; right: 10%; top: 20%; }
+        textarea { width: 100%; border-radius: 10px; border: none; padding: 10px; height: 100px; margin-top: 10px; }
+        .submit-btn { background: #9d4edd; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div style="padding: 40px;">
+        <h2>Otawell</h2>
+        <h1>Feedback Form</h1>
+        <div class="glass-container">
+            <h3>Section 1: About Your Therapy</h3>
+            <form th:action="@{/feedback/submit}" th:object="${feedback}" method="post">
+                <p>Please enter your comments below:</p>
+                <textarea th:field="*{comment}" maxlength="250" required placeholder="Tell us how we did..."></textarea>
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+            </form>
+            <p th:if="${param.success}" style="color: #00ffcc;">Feedback submitted successfully!</p>
+        </div>
+    </div>
+</body>
+</html>

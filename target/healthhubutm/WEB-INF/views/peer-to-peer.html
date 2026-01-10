@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Simple Chat</title>
+</head>
+<body>
+    <h1>Chat</h1>
+    <div th:each="msg : ${messages}">
+        <p th:text="${msg}"></p>
+    </div>
+    <form th:action="@{/chat/peer-to-peer}" method="post">
+        <input type="text" name="message" placeholder="Type your message..." required />
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
