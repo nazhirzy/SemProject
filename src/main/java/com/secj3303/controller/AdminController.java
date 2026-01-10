@@ -26,22 +26,23 @@ public class AdminController {
         return "admin".equals(role);
     }
     
-    @GetMapping("/dashboard")
-    public String adminDashboard(HttpSession session) {
-        if (!isAdmin(session)) {
-            return "redirect:/login"; 
-        }
-        return "admin-dashboard"; 
+    @GetMapping("/home")
+    public String adminDashboard() {
+        return "homepage/admin-home"; 
     }
 
-    @GetMapping("/users")
-    public String listUsers(HttpSession session, Model model){
-        if (!isAdmin(session)) return "redirect:/login";
+    @GetMapping("/members")
+    public String listMembers(Model model) {
+        List<Person> members = personDao.findAllMembers();
+        model.addAttribute("users", members);
+        return "admin/admin-user-list";
+    }
 
-        List<Person> users = personDao.findAllUsers();
-        model.addAttribute("users", users);
-        return "admin-user-list";
-
+    @GetMapping("/professionals")
+    public String listProfessionals(Model model) {
+        List<Person> professionals = personDao.findAllProfessionals();
+        model.addAttribute("profs", professionals);
+        return "admin/admin-prof-list";
     }
 
 }

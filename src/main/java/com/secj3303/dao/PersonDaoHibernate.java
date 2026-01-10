@@ -43,9 +43,18 @@ public class PersonDaoHibernate implements PersonDao {
     @Transactional
     public List<Person> findAllMembers() {
         Query<Person> query = openSession().createQuery(
-            "from Person p where p.role = 'member'", Person.class);
+            "from Person p where p.role = 'ROLE_MEMBER'", Person.class);
         return query.getResultList();
     }
+
+    @Override
+    @Transactional
+    public List<Person> findAllProfessionals() {
+        Query<Person> query = openSession().createQuery(
+        "from Person p where p.role = 'ROLE_PROFESSIONAL'", Person.class);
+        return query.getResultList();
+    }
+
 
     @Override
     public List<Person> findAllUsers(){

@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,6 +69,8 @@ public class MemberController {
     @PostMapping("/my-sessions/unbook/{id}")
     public String unbookSession(@PathVariable("id") int id) {
         sessionDao.unbook(id);
-        return "redirect:/member/my-sessions"; // Redirect back to their list
+        return "redirect:/member/my-sessions";
     }
+
+    // SURVEY
 }
