@@ -43,7 +43,7 @@ public class PersonDaoHibernate implements PersonDao {
     @Transactional
     public List<Person> findAllMembers() {
         Query<Person> query = openSession().createQuery(
-            "from Person p where p.role = 'member'", Person.class);
+            "from Person p where p.role = 'ROLE_MEMBER'", Person.class);
         return query.getResultList();
     }
 
@@ -60,6 +60,16 @@ public class PersonDaoHibernate implements PersonDao {
         Session session = openSession();
         session.save(person);
     }
+
+    @Override
+    @Transactional
+    public void delete(int id) {
+    Session session = openSession();
+    Person person = session.get(Person.class, id);
+    if (person != null) {
+        session.delete(person);
+    }
+}
 
     @Override
     public Person findById(int id) {
@@ -81,5 +91,11 @@ public class PersonDaoHibernate implements PersonDao {
                 .setParameter("name", name)
                 .uniqueResult();
     }
-
+    @Override
+    @Transactional
+    public List<Person> findAllProfessionals() {
+        Query<Person> query = openSession().createQuery(
+        "from Person p where p.role = 'ROLE_PROFESSIONAL'", Person.class);
+        return query.getResultList();
+}
 }
