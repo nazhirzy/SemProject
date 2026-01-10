@@ -41,7 +41,7 @@ public class SecurityConfig {
 
             .authorizeHttpRequests()
                 .requestMatchers("/login", "/register", "/css/**").permitAll()
-                .requestMatchers("/chat/**").hasAnyRole("MEMBER", "ADMIN","PROFESSIONAL")
+                .requestMatchers("/chat/**", "/feedback").hasAnyRole("MEMBER", "ADMIN","PROFESSIONAL")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/member/**").hasRole("MEMBER")
                 .requestMatchers("/professional/**").hasRole("PROFESSIONAL")
