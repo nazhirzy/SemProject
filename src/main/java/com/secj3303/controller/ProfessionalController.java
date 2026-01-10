@@ -33,7 +33,7 @@ public class ProfessionalController {
 
     @GetMapping("/home")
     public String dashboard(HttpSession session, Model model){
-        return "professional-home";
+        return "homepage/professional-home";
     }
 
     // SESSION STUFF

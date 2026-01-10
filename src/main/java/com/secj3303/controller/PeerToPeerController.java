@@ -33,7 +33,7 @@ public class PeerToPeerController {
     public String sendMessage(@RequestParam String message, HttpSession session, Principal principal) {
         List<String> messages = (List<String>) session.getAttribute("chatMessages");
         if (messages == null) {
-            messages = new ArrayList<>();
+            messages = new ArrayList<>(); 
         }
 
         String name = principal.getName();

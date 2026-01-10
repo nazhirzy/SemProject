@@ -32,7 +32,7 @@ public class MemberController {
 
     @GetMapping("/home")
     public String dashboard(HttpSession session, Model model){
-        return "member-home";
+        return "homepage/member-home";
     }
 
     // SESSIONS PAGE

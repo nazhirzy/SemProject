@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Professional Home</title></head>
+<body>
+<h2>professional Home</h2>
+<p>Welcome, <span th:text="${#authentication.name}"></span>!</p>
+<p>Regular user page.</p>
+
+<a th:href="@{/professional/session/create}">create session</a>
+<a th:href="@{/professional/session/my-schedule}">my schedule</a>
+<a th:href="@{/logout}">Logout</a>
+</body>
+</html>
