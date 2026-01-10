@@ -3,6 +3,7 @@ package com.secj3303.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,19 +16,22 @@ import javax.persistence.OneToMany;
 public class SurveyQuestion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String text;
-    private String type;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "survey_id")
     private Survey survey;
 
+    @Column(nullable = false)
+    private String questionText;
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<SurveyResponse> responses;
 
-    public void setSurvey(Survey survey) {
-        this.survey = survey;
-    }
+    public int getId() {return id;}
+    public Survey getSurvey() {return survey;}
+    public String getQuestionText() {return questionText;}
+
+    public void setSurvey(Survey survey) {this.survey = survey;}
+    public void setQuestionText(String questionText) {this.questionText = questionText;}
 }
