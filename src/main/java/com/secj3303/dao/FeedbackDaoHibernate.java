@@ -43,7 +43,8 @@ public class FeedbackDaoHibernate implements FeedbackDao {
     public List<Feedback> findAll() {
         Session session = sessionFactory.openSession();
         try {
-            return session.createQuery("from Feedback", Feedback.class).list();
+            String hql = "FROM Feedback f JOIN FETCH f.person";
+            return session.createQuery(hql, Feedback.class).list();
         } finally {
             session.close();
         }

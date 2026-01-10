@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 <tr class="feedback-row" th:each="fb : ${feedbacks}">
-                    <td th:text="'${fb.id}"></td>
+                    <td th:text="${fb.id}"></td>
                     <td th:text="${fb.person.name}"></td>
                     <td th:text="${fb.comment}"></td>
                 </tr>

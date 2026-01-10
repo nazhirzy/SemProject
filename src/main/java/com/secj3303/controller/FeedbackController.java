@@ -45,17 +45,13 @@ public class FeedbackController {
         return "redirect:/feedback?success";
     }
 
-    // Admin View
-    @GetMapping("/admin/feedback")
+   @GetMapping("/admin/feedback")
     public String listFeedback(Model model, HttpSession session) {
-        Person loggedInUser = (Person) session.getAttribute("user");
-        // Simple role check
-        if (loggedInUser == null || !"admin".equals(loggedInUser.getRole())) {
-            return "redirect:/login";
-        }
         
         List<Feedback> feedbackList = feedbackDao.findAll();
+        
         model.addAttribute("feedbacks", feedbackList);
         return "admin_feedback";
     }
+    
 }
