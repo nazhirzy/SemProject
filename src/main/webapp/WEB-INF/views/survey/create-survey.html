@@ -1,0 +1,5 @@
+<form th:action="@{/professional/survey/save}" th:object="${survey}" method="post">
+    <label>Survey Title:</label>
+    <input type="text" th:field="*{title}" required />
+    <button type="submit">Create Survey & Add Questions</button>
+</form>

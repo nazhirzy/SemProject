@@ -28,6 +28,13 @@ public class SurveyQuestion {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<SurveyResponse> responses;
 
+    public SurveyQuestion() {}
+
+    public SurveyQuestion(String questionText, Survey survey) {
+        this.questionText = questionText;
+        this.survey = survey;
+    }
+
     public int getId() {return id;}
     public Survey getSurvey() {return survey;}
     public String getQuestionText() {return questionText;}

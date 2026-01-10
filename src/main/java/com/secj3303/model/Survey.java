@@ -1,5 +1,6 @@
 package com.secj3303.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,7 +23,7 @@ public class Survey {
     private String title;
 
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
-    private List<SurveyQuestion> questions;
+    private List<SurveyQuestion> questions = new ArrayList<>();
 
     public Survey(){}
 
@@ -32,6 +33,7 @@ public class Survey {
 
     public int getId() {return id;}
     public String getTitle() {return title;}
+    public List<SurveyQuestion> getQuestions() {return questions;}
 
     public void setTitle(String title) {this.title = title;}
 }
