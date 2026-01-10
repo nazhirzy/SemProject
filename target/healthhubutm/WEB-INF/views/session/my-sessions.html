@@ -1,0 +1,30 @@
+<h2>My Booked Sessions</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Session Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Professional</th>
+            <th>Cancel</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="s : ${mySessions}">
+            <td th:text="${s.name}"></td>
+            <td th:text="${s.date}"></td>
+            <td th:text="${s.time}"></td>
+            <td th:text="${s.conductor != null ? s.conductor.name : 'N/A'}"></td>
+            <td>
+            <form th:action="@{/member/my-sessions/unbook/{id}(id=${s.id})}" method="post">
+                <button type="submit" onclick="return confirm('Are you sure you want to cancel?')">
+                    Cancel Booking
+                </button>
+            </form>
+        </td>
+        </tr>
+    </tbody>
+</table>
+<div th:if="${#lists.isEmpty(mySessions)}">
+    <p>You haven't booked any sessions yet. <a th:href="@{/member/session}">Browse available sessions.</a></p>
+</div>

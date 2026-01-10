@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Session</title>
+</head>
+<body>
+<h2>Create a New Session</h2>
+
+<form th:action="@{/professional/session/create}" th:object="${session}" method="post">
+
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required/><br/>
+
+    <label>Date:</label>
+    <input type="date" th:field="*{date}" th:value="*{date}" required/><br/>
+
+    <label>Time:</label>
+    <input type="time" th:field="*{time}" th:value="*{time}" required/><br/>
+
+    <button type="submit">Create Session</button>
+</form>
+
+<a th:href="@{/professional/home}">Back to Home</a>
+</body>
+</html>
+
