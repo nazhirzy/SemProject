@@ -1,6 +1,5 @@
 package com.secj3303.model;
 
-import java.time.Year;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,19 +22,15 @@ public class Person {
     private String password;
 
     @Column(nullable = false)
-    private int yob;
-
-    @Column(nullable = false)
     private String role;
+
 
     public Person(){}
 
-    public Person(int id, String name, String password, int yob, double weight, double height){
-        this.id = id;
+    public Person(String name, String password, String role){
         this.name = name;
         this.password = password;
-        this.yob = yob;
-
+        this.role = role;
     }
 
     public int getId() {
@@ -49,16 +44,6 @@ public class Person {
     public String getPassword() {
         return password;
     }
-
-    public int getYob() {
-        return yob;
-    }
-
-    public int getAge() {
-        int year = Year.now().getValue();
-        return year - yob;
-    }
-
 
  public void setId(int id) {
      this.id = id;
@@ -74,10 +59,6 @@ public class Person {
  }
 
 
- public void setYob(int yob) {
-     this.yob = yob;
- }
-
  public String getRole() {
      return role;
  }
@@ -85,5 +66,6 @@ public class Person {
  public void setRole(String role) {
      this.role = role;
  }
+
 }
 

@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Question {
+public class SurveyQuestion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,7 +25,7 @@ public class Question {
     private Survey survey;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-    private List<Response> responses;
+    private List<SurveyResponse> responses;
 
     public void setSurvey(Survey survey) {
         this.survey = survey;

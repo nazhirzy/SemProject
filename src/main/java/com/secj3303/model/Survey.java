@@ -22,9 +22,9 @@ public class Survey {
     private String title;
 
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
-    private List<Question> questions;
+    private List<SurveyQuestion> questions;
 
-    public void addQuestion(Question question) {
+    public void addQuestion(SurveyQuestion question) {
         questions.add(question);
         question.setSurvey(this);
     }

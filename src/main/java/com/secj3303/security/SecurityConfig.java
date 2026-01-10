@@ -2,36 +2,37 @@ package com.secj3303.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.secj3303.services.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    private final CustomUserDetailsService userDetailsService;
+
+    public SecurityConfig(CustomUserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-        UserDetails admin = User.withUsername("admin")
-                .password("{noop}admin1234")
-                .roles("ADMIN", "MEMBER")
-                .build();
-
-        UserDetails member = User.withUsername("member")
-                .password("{noop}member1234")
-                .roles("MEMBER")
-                .build();
-
-        UserDetails trainer = User.withUsername("trainer")
-                .password("{noop}trainer1234")
-                .roles("TRAINER")
-                .build();
-
-        return new InMemoryUserDetailsManager(admin, member, trainer);
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
     }
 
     @Bean
@@ -41,14 +42,16 @@ public class SecurityConfig {
             .csrf().disable()
 
             .authorizeHttpRequests()
+                .requestMatchers("/login", "/register", "/css/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/member/**").hasRole("MEMBER")
-                .requestMatchers("/trainer/**").hasRole("TRAINER")
+                .requestMatchers("/professional/**").hasRole("PROFESSIONAL")
                 .anyRequest().authenticated()
                 .and()
 
             .formLogin()
-                .defaultSuccessUrl("/dashboard", true)
+                .loginPage("/login")
+                .defaultSuccessUrl("/home", true)
                 .permitAll()
                 .and()
 

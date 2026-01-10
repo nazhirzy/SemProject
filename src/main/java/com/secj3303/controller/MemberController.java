@@ -20,16 +20,9 @@ import com.secj3303.model.Person;
 @RequestMapping("/member")
 public class MemberController {
 
-    @GetMapping("/dashboard")
+    @GetMapping("/home")
     public String dashboard(HttpSession session, Model model){
-        if (!"member".equals(session.getAttribute("role"))) {
-            return "redirect:/login";
-        }
-
-        String name = (String) session.getAttribute("name");
-        model.addAttribute("name", name);
-
-        return "member-dashboard";
+        return "member-home";
     }
 
 

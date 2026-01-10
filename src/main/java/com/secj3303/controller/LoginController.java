@@ -3,6 +3,8 @@ package com.secj3303.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,48 +18,24 @@ import com.secj3303.model.Person;
 public class LoginController {
     @Autowired
     private PersonDaoHibernate pDao;
+    @Autowired
+    private PasswordEncoder pEncode;
 
     @GetMapping("/login")
     public String getLoginPage() {
-        return "login";
+        return "auth/login";
     }
 
-    @PostMapping("/login")
-    public String login(@RequestParam String name, @RequestParam String password, HttpSession session, Model model){
-        String role = null;
-        Person p = pDao.findByUsername(name);
-
-        if (p == null) {
-            model.addAttribute("error", "Invalid username");
-            return "login";
-        }
-
-        if (!p.getPassword().equals(password)) {
-            model.addAttribute("error", "Invalid password");
-            return "login";
-        }
-
-        if (p.getRole().equals("member")) {
-            role = "member";
-        } else if (p.getRole().equals("trainer")) {
-            role = "trainer";
-        } else if (p.getRole().equals("admin")) {
-            role = "admin";
-        }
-
-        session.setAttribute("name", name);
-        session.setAttribute("role", role);
-        session.setAttribute("id", p.getId());
-
-        if (role.equals("member")) {
-            return "redirect:/member/dashboard";
-        } else if (role.equals("trainer")) {
-            return "redirect:/trainer/dashboard";
-        } else if (role.equals("admin")) {
-            return "redirect:/admin/dashboard";
-        }
-
-        return "redirect:/login";
+    @GetMapping("/home")
+    public String homeRedirect(Authentication authentication) {
+        if (authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+            return "redirect:/admin/home";
+        } else if(authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_PROFESSIONAL"))){
+                    return "redirect:/professional/home";
+                }
+        return "redirect:/member/home";
     }
 
     @GetMapping("/logout")
