@@ -28,4 +28,5 @@ public class FeedbackDaoHibernate implements FeedbackDao {
     public Feedback findById(int id) {
         return entityManager.find(Feedback.class, id);
     }
+
 }
