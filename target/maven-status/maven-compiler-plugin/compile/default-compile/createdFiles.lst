@@ -12,9 +12,13 @@ com\secj3303\controller\MemberController.class
 com\secj3303\dao\ModuleDaoHibernate.class
 com\secj3303\dao\PersonDaoHibernate.class
 com\secj3303\model\Feedback.class
+com\secj3303\dao\FeedbackDaoHibernate.class
 com\secj3303\controller\ProfessionalController.class
 com\secj3303\model\Module.class
+com\secj3303\controller\PeerToPeerController.class
 com\secj3303\dao\ModuleDao.class
+com\secj3303\controller\FeedbackController.class
+com\secj3303\dao\FeedbackDao.class
 com\secj3303\security\SecurityConfig.class
 com\secj3303\dao\PersonDao.class
 com\secj3303\model\Survey.class

@@ -1,0 +1,19 @@
+<h2>My Teaching/Counseling Schedule</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Session Name</th>
+            <th>Date & Time</th>
+            <th>Booked By (Member)</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="s : ${schedule}">
+            <td th:text="${s.name}"></td>
+            <td th:text="${s.date} + ' ' + ${s.time}"></td>
+            <td th:text="${s.bookedBy != null ? s.bookedBy.name : 'Not Booked Yet'}"></td>
+            <td th:text="${s.status}"></td>
+        </tr>
+    </tbody>
+</table>

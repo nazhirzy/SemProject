@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sessions</title>
+</head>
+<body>
+<h2>Available Sessions</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Mental Health Professional</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="s : ${sessions}">
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.date}"></td>
+        <td th:text="${s.time}"></td>
+    
+        <td th:text="${s.conductor != null ? s.conductor.name : 'Unknown'}"></td>
+    
+        <td th:text="${s.status}"></td>
+        <td>
+            <div th:if="${#strings.toString(s.status) == 'AVAILABLE'}">
+                <form th:action="@{/member/sessions/book/{id}(id=${s.id})}" method="post">
+                    <button type="submit">Book</button>
+                </form>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/member/home}">Home</a></p>
+</body>
+</html>
+

@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name = "sessions")
@@ -26,45 +28,48 @@ public class Sessions {
     private String name;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime time;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private SessionStatus status = SessionStatus.AVAILABLE;
 
     @ManyToOne
-    @JoinColumn(name = "person_id", nullable = false)
+    @JoinColumn(name = "booked_id")
     private Person bookedBy;
+
+    @ManyToOne
+    @JoinColumn(name = "conductor_id")
+    private Person conductor;
 
     public Sessions(){}
 
-    public String getName() { return name; }
+    public Sessions(String name, LocalDate date, LocalTime time) {
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.status = SessionStatus.AVAILABLE;
+    }
 
     public int getId() { return id; }
-    
-    public SessionStatus getStatus() { return status; }
-
-    public LocalTime getTime() { return time; }
-
+    public String getName() { return name; }
     public LocalDate getDate() { return date; }
-
+    public LocalTime getTime() { return time; }
+    public SessionStatus getStatus() { return status; }
     public Person getBookedBy() { return bookedBy; }
+    public Person getConductor() { return conductor; }
 
-    public void setBookedBy(Person bookedBy) { this.bookedBy = bookedBy; }
-
-    public void setId(int id) { this.id = id; }
-
-    public void setDate(LocalDate date) { this.date = date; }
 
     public void setName(String name) { this.name = name; }
-
+    public void setDate(LocalDate date) { this.date = date; }
+    public void setTime(LocalTime time) { this.time = time; }
     public void setStatus(SessionStatus status) { this.status = status; }
-
-    public void setTime(LocalTime time) {this.time = time; }
+    public void setBookedBy(Person bookedBy) { this.bookedBy = bookedBy; }
+    public void setConductor(Person conductor) { this.conductor = conductor; }
 }
 
-enum SessionStatus {
-    AVAILABLE, PENDING, BOOKED, COMPLETED, CANCELLED
-}

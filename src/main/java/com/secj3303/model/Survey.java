@@ -24,8 +24,14 @@ public class Survey {
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
     private List<SurveyQuestion> questions;
 
-    public void addQuestion(SurveyQuestion question) {
-        questions.add(question);
-        question.setSurvey(this);
+    public Survey(){}
+
+    public Survey(String title){
+        this.title = title;
     }
+
+    public int getId() {return id;}
+    public String getTitle() {return title;}
+
+    public void setTitle(String title) {this.title = title;}
 }
