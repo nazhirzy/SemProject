@@ -18,12 +18,18 @@ public class Person {
     @Column(nullable = false)
     private String role;
 
-    // New fields for the Professional view
+    
     @Column(nullable = true)
     private String specialization;
 
     @Column(nullable = true)
     private String credentials;
+
+    @Column(length = 500)
+    private String description; // Bio idk
+
+
+    
 
     public Person(){}
 
@@ -50,4 +56,7 @@ public class Person {
     public void setSpecialization(String specialization) { this.specialization = specialization; }
     public String getCredentials() { return credentials; }
     public void setCredentials(String credentials) { this.credentials = credentials; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
 }

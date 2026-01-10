@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div class="profile-card admin">
+        <div class="profile-header">
+            <div class="avatar-box"><img src="/images/admin-avatar.png"></div>
+            <div class="user-info">
+                <h2 th:text="${user.name}">Admin Name</h2>
+                <p>Role: System Administrator</p>
+                <p>Admin ID: <span th:text="${'A' + user.id}"></span></p>
+            </div>
+        </div>
+        <div class="button-stack">
+            <a href="/admin/members" class="btn">ACCESS MEMBERS' LIST</a>
+            <a href="/admin/professionals" class="btn">ACCESS PROFESSIONALS' LIST</a>
+            <a href="/profile/edit" class="btn-edit">Edit Profile</a>
+        </div>
+    </div>
+</body>
+</html>

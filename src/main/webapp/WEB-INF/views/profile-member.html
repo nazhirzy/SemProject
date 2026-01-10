@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style th:replace="~{fragments/style :: profile-css}"></style>
+</head>
+<body>
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="avatar-box">
+                <img src="/images/default-avatar.png" alt="Profile Pic">
+            </div>
+            <div class="user-info">
+                <h2 th:text="${user.name}">Member Name</h2>
+                <p class="description" th:text="${user.description}">Description text here...</p>
+                <p class="meta">Username: <span th:text="${user.name}"></span><br>ID: <span th:text="${'U' + user.id}"></span></p>
+            </div>
+        </div>
+        <div class="button-row">
+            <a href="/profile/edit" class="btn">Edit Profile</a>
+            <a href="/feedback/history" class="btn-alt">PREVIOUS SURVEYS</a>
+        </div>
+    </div>
+</body>
+</html>
