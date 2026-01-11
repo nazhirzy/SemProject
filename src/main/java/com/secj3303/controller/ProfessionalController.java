@@ -20,8 +20,8 @@ import com.secj3303.dao.ModuleDaoHibernate;
 import com.secj3303.dao.PersonDaoHibernate;
 import com.secj3303.dao.SessionDaoHibernate;
 import com.secj3303.dao.SurveyDao;
-import com.secj3303.model.Person;
 import com.secj3303.model.Module;
+import com.secj3303.model.Person;
 import com.secj3303.model.SessionStatus;
 import com.secj3303.model.Sessions;
 import com.secj3303.model.Survey;
@@ -186,5 +186,13 @@ public class ProfessionalController {
             moduleDao.delete(module);
         }
         return "redirect:/professional/module";
+    }
+
+    @GetMapping("/profile")
+    public String viewProfile(Model model, Principal principal) {
+        String username = principal.getName();
+        Person user = pDao.findByUsername(username);
+        model.addAttribute("user", user);
+        return "profile/professional-profile";
     }
 }
