@@ -20,7 +20,6 @@ import com.secj3303.services.AdminService;
 @RequestMapping("/admin")
 public class AdminController {
 
-
     @Autowired
     private PersonDaoHibernate personDao;
 

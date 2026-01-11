@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Otawell - Edit Profile</title>
+    <style>
+        body { background: linear-gradient(135deg, #12002f, #4a0080); color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .edit-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border-radius: 30px; padding: 40px; width: 450px; border: 1px solid rgba(255,255,255,0.1); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 12px; margin-bottom: 8px; color: #ccc; }
+        input, textarea { width: 100%; padding: 12px; border-radius: 10px; border: none; background: rgba(255,255,255,0.9); color: #333; box-sizing: border-box; }
+        .btn-save { width: 100%; background: #7b2cbf; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-cancel { display: block; text-align: center; margin-top: 15px; color: #ccc; text-decoration: none; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="edit-card">
+        <h2 style="font-style: italic;">Edit Profile</h2>
+        <form th:action="@{/profile/edit/save}" th:object="${user}" method="post">
+            
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" th:field="*{name}" required />
+            </div>
+
+            <div th:if="${user.role == 'ROLE_PROFESSIONAL'}">
+                <div class="form-group">
+                    <label>Specialization</label>
+                    <input type="text" th:field="*{specialization}" placeholder="e.g. Cognitive Behavioral Therapy" />
+                </div>
+                <div class="form-group">
+                    <label>Credentials</label>
+                    <input type="text" th:field="*{credentials}" placeholder="e.g. PhD, Licensed Psychologist" />
+                </div>
+            </div>
+
+            <div th:if="${user.role != 'ROLE_PROFESSIONAL'}" class="form-group">
+                <label>Description / Bio</label>
+                <textarea th:field="*{description}" rows="4" placeholder="Tell us about yourself..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-save">SAVE CHANGES</button>
+            <a href="/profile" class="btn-cancel">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
