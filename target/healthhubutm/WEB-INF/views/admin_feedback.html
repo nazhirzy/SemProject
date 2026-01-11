@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body { background: #12002f; color: white; font-family: sans-serif; }
+        .main-panel { background: rgba(255,255,255,0.05); margin: 50px; padding: 30px; border-radius: 20px; }
+        table { width: 100%; border-spacing: 0 10px; }
+        tr.feedback-row { background: rgba(255,255,255,0.9); color: #333; border-radius: 50px; }
+        td { padding: 15px; }
+        td:first-child { border-top-left-radius: 25px; border-bottom-left-radius: 25px; padding-left: 30px; }
+        td:last-child { border-top-right-radius: 25px; border-bottom-right-radius: 25px; }
+    </style>
+</head>
+<body>
+    <div class="main-panel">
+        <h1>Feedback</h1>
+        <h1>debug word if not seen its using old html</h1>
+        <table>
+            <thead>
+                <tr style="text-align: left; color: #ccc;">
+                    <th>Feedback ID</th>
+                    <th>Submitted by</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="feedback-row" th:each="fb : ${feedbacks}">
+                    <td th:text="${fb.id}"></td>
+                    <td th:text="${fb.person.name}"></td>
+                    <td th:text="${fb.comment}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
