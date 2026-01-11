@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+    <div th:replace="fragments/admin-header :: header"></div>
     <style>
         body { background: #12002f; color: white; font-family: sans-serif; }
         .main-panel { background: rgba(255,255,255,0.05); margin: 50px; padding: 30px; border-radius: 20px; }

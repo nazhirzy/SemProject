@@ -20,6 +20,7 @@ import com.secj3303.dao.PersonDaoHibernate;
 import com.secj3303.dao.SessionDaoHibernate;
 import com.secj3303.dao.SurveyDaoHibernate;
 import com.secj3303.model.Person;
+import com.secj3303.model.SurveyQuestion;
 import com.secj3303.model.Sessions;
 import com.secj3303.model.Survey;
 import com.secj3303.model.SurveyQuestion;
