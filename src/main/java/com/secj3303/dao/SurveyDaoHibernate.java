@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.secj3303.model.Person;
 import com.secj3303.model.Survey;
 import com.secj3303.model.SurveyQuestion;
 import com.secj3303.model.SurveyResponse;
@@ -85,4 +86,18 @@ public class SurveyDaoHibernate implements SurveyDao {
             throw e;
         }
     }
+
+    @Override
+    public void deleteResponseByMember(Person member) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+            session.createQuery(
+                "DELETE FROM SurveyResponse r WHERE r.person = :member"
+            ).setParameter("member", member)
+            .executeUpdate();
+
+            tx.commit();
+        }
+    }
+
 }

@@ -9,6 +9,7 @@ com\secj3303\services\CustomUserDetailsService.class
 com\secj3303\dao\ResponseDaoHibernate.class
 com\secj3303\controller\LoginController.class
 com\secj3303\controller\MemberController.class
+com\secj3303\services\AdminService.class
 com\secj3303\dao\ModuleDaoHibernate.class
 com\secj3303\dao\PersonDaoHibernate.class
 com\secj3303\model\Feedback.class

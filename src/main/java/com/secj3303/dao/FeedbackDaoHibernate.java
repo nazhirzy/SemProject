@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.secj3303.model.Feedback;
+import com.secj3303.model.Person;
 
 @Repository
 public class FeedbackDaoHibernate implements FeedbackDao {
@@ -59,4 +60,18 @@ public class FeedbackDaoHibernate implements FeedbackDao {
             session.close();
         }
     }
+
+    @Override
+    public void deleteFeedbackByMember(Person member) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+            session.createQuery(
+                "DELETE FROM Feedback f WHERE f.person = :member"
+            ).setParameter("member", member)
+            .executeUpdate();
+
+            tx.commit();
+        }
+    }
+
 }
