@@ -2,7 +2,6 @@ package com.secj3303.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,12 +25,6 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
-
-
-    private boolean isAdmin(HttpSession session) {
-        String role = (String) session.getAttribute("role");
-        return "admin".equals(role);
-    }
     
     @GetMapping("/home")
     public String adminDashboard() {

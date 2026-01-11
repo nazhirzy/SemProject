@@ -103,10 +103,10 @@ public class MemberController {
         int totalScore = 0;
         int maxScore = 0;
         
-        // Get all questions for this survey to calculate max score
-        List<SurveyQuestion> questions = survey.getQuestions(); // You'll need this method
+
+        List<SurveyQuestion> questions = survey.getQuestions(); 
         for (SurveyQuestion q : questions) {
-            maxScore += 5; // Assuming each question max value is 5, adjust accordingly
+            maxScore += 5; 
         }
         
         for (String key : params.keySet()) {
