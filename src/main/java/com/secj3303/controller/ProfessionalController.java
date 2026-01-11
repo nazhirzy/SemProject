@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.secj3303.dao.ModuleDaoHibernate;
 import com.secj3303.dao.PersonDaoHibernate;
 import com.secj3303.dao.SessionDaoHibernate;
 import com.secj3303.dao.SurveyDao;
 import com.secj3303.model.Person;
+import com.secj3303.model.Module;
 import com.secj3303.model.SessionStatus;
 import com.secj3303.model.Sessions;
 import com.secj3303.model.Survey;
@@ -37,6 +39,9 @@ public class ProfessionalController {
 
     @Autowired
     private SurveyDao sDao;
+
+    @Autowired
+    private ModuleDaoHibernate moduleDao;
 
     @GetMapping("/home")
     public String dashboard(HttpSession session, Model model){
@@ -121,5 +126,66 @@ public class ProfessionalController {
     public String deleteSurvey(@PathVariable int id) {
         sDao.deleteSurvey(id);
         return "redirect:/professional/survey/manage";
+    }
+
+    // Resource Module 
+
+    @GetMapping("/module")
+public String listModules(Model model) {
+    try {
+        List<Module> modules = moduleDao.findAll();
+        System.out.println("Fetched modules: " + modules.size());
+        for (Module m : modules) {
+            System.out.println("Module: " + m.getTitle());
+        }
+        model.addAttribute("modules", modules);
+        return "module/professional-modules";
+    } catch (Exception e) {
+        // Print full stack trace so we can see the root cause
+        e.printStackTrace();
+        // Optionally add an error message to the model
+        model.addAttribute("errorMessage", "Error loading modules: " + e.getMessage());
+        return "module/professional-modules"; // still returns the page so you see the error
+    }
+}
+
+
+
+    @GetMapping("/module/create")
+    public String showCreateForm(Model model) {
+        model.addAttribute("module", new Module());
+        return "module/create-module";
+    }
+
+    @PostMapping("/module/create")
+    public String createModule(@ModelAttribute Module module) {
+        moduleDao.save(module);
+        return "redirect:/professional/module";
+    }
+
+    @GetMapping("/module/edit/{id}")
+    public String showEditForm(@PathVariable int id, Model model) {
+        Module module = moduleDao.findById(id);
+        if (module == null) {
+            return "redirect:/professional/module";
+        }
+        model.addAttribute("module", module);
+        return "module/edit-module";
+    }
+
+    @PostMapping("/module/edit/{id}")
+    public String editModule(@PathVariable int id, @ModelAttribute Module module) {
+        module.setId(id);
+        moduleDao.save(module);
+        return "redirect:/professional/module";
+    }
+
+    @GetMapping("/module/delete/{id}")
+    public String deleteModule(@PathVariable int id) {
+        Module module = moduleDao.findById(id);
+        if (module != null) {
+            moduleDao.delete(module);
+        }
+        return "redirect:/professional/module";
     }
 }
