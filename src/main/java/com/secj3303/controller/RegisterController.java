@@ -39,5 +39,23 @@ public class RegisterController{
         personDao.save(user);
         return "redirect:/login";
     }
+
+    @GetMapping("/admin/register/professional")
+    public String ProfregisterForm(Model model) {
+        model.addAttribute("user", new Person());
+        return "auth/register-professional";
     }
+
+    @PostMapping("/admin/register/professional")
+    public String profRegisterSubmit(@ModelAttribute Person user, Model model) {
+        if (personDao.findByUsername(user.getName()) != null) {
+            model.addAttribute("error", "Username is taken");
+            return "auth/register-professional";
+        }
+        user.setPassword(pEncoder.encode(user.getPassword()));
+        user.setRole("ROLE_PROFESSIONAL");
+        personDao.save(user);
+        return "redirect:/admin/home";
+    }
+}
 

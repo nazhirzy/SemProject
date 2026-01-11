@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Professional Modules</title>
 </head>
 <body>
 <h2>Professional Modules</h2>
-
 <a th:href="@{/professional/module/create}">Create New Module</a>
-<br/><br/>
 
 <table border="1" cellpadding="5" cellspacing="0">
     <thead>
@@ -16,32 +13,43 @@
             <th>ID</th>
             <th>Title</th>
             <th>Description</th>
-            <th>Content</th>
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
-        <!-- Check if modules list is empty -->
-        <tr th:if="${#lists.isEmpty(modules)}">
-            <td colspan="5">No modules found.</td>
-        </tr>
-
-        <!-- Loop through modules -->
-        <tr th:each="mod : ${modules}">
-            <td th:text="${mod.id}">1</td>
-            <td th:text="${mod.title}">Title</td>
-            <td th:text="${mod.description}">Description</td>
-            <td th:text="${mod.content}">Content</td>
-            <td>
-                <a th:href="@{'/professional/module/edit/' + ${mod.id}}">Edit</a> |
-                <a th:href="@{'/professional/module/delete/' + ${mod.id}}"
-                   onclick="return confirm('Are you sure you want to delete this module?');">Delete</a>
-            </td>
-        </tr>
+    <tbody id="moduleTableBody">
+        <!-- Rows will be added by JavaScript -->
     </tbody>
 </table>
 
-<br/>
 <a th:href="@{/professional/home}">Back to Home</a>
+
+<!-- Hidden data that Thymeleaf can populate -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var modules = /*[[${modules}]]*/ [];
+    var contextPath = /*[[@{/}]]*/ '';
+    
+    // Build table rows
+    var tbody = document.getElementById('moduleTableBody');
+    
+    if (modules.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4">No modules found</td></tr>';
+    } else {
+        modules.forEach(function(mod) {
+            var row = document.createElement('tr');
+            row.innerHTML = 
+                '<td>' + mod.id + '</td>' +
+                '<td>' + mod.title + '</td>' +
+                '<td>' + mod.description + '</td>' +
+                '<td>' +
+                    '<a href="' + contextPath + 'professional/module/edit/' + mod.id + '">Edit</a> | ' +
+                    '<a href="' + contextPath + 'professional/module/delete/' + mod.id + '" ' +
+                    'onclick="return confirm(\'Are you sure you want to delete this module?\');">Delete</a>' +
+                '</td>';
+            tbody.appendChild(row);
+        });
+    }
+    /*]]>*/
+</script>
 </body>
 </html>
