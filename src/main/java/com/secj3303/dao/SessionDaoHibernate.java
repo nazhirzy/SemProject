@@ -123,4 +123,18 @@ public class SessionDaoHibernate implements SessionDao {
                 .getResultList();
         }
     }
+
+    @Override
+    public void clearBooking(Person member) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+            session.createQuery(
+                "UPDATE Sessions s SET s.bookedBy = null WHERE s.bookedBy = :member"
+            ).setParameter("member", member)
+            .executeUpdate();
+
+            tx.commit();
+        }
+    }
+
 }

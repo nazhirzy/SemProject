@@ -1,0 +1,13 @@
+<div th:if="${param.success}" style="color: green; font-weight: bold;">
+    Survey submitted successfully!
+</div>
+
+<h2>Available Surveys</h2>
+<div th:each="s : ${surveys}" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px;">
+    <h3 th:text="${s.title}"></h3>
+    <p th:text="${s.description}"></p>
+    <p><small th:text="${s.questions.size()} + ' Questions'"></small></p>
+    
+    <a th:href="@{/member/survey/take/{id}(id=${s.id})}">Take this Survey</a>
+    <a th:href="@{/member/home}">Home</a></p>
+</div>

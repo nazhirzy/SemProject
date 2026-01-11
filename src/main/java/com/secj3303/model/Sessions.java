@@ -40,7 +40,7 @@ public class Sessions {
     private SessionStatus status = SessionStatus.AVAILABLE;
 
     @ManyToOne
-    @JoinColumn(name = "booked_id")
+    @JoinColumn(name = "booked_id", nullable = true)
     private Person bookedBy;
 
     @ManyToOne

@@ -1,0 +1,19 @@
+<h1 th:text="${survey.title}"></h1>
+<p th:text="${survey.description}" style="font-style: italic; color: gray;"></p>
+
+<hr/>
+
+<form th:action="@{/member/survey/submit/{id}(id=${survey.id})}" method="post">
+    <div th:each="q : ${survey.questions}" style="margin-bottom: 20px;">
+        <p th:text="${q.questionText}" style="font-weight: bold;"></p>
+        
+        <label><input type="radio" th:name="'question_' + ${q.id}" value="1" required /> 1 (Strongly Disagree)</label>
+        <label><input type="radio" th:name="'question_' + ${q.id}" value="2" /> 2</label>
+        <label><input type="radio" th:name="'question_' + ${q.id}" value="3" /> 3 (Neutral)</label>
+        <label><input type="radio" th:name="'question_' + ${q.id}" value="4" /> 4</label>
+        <label><input type="radio" th:name="'question_' + ${q.id}" value="5" /> 5 (Strongly Agree)</label>
+    </div>
+
+    <button type="submit">Submit My Responses</button>
+    <a th:href="@{/member/home}">Home</a></p>
+</form>

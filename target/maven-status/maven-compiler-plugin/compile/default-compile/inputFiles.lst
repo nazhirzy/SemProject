@@ -4,7 +4,6 @@ C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\contr
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\model\Module.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\model\SurveyQuestion.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\dao\ModuleDao.java
-C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\controller\dashboard.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\controller\ProfessionalController.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\dao\PersonDao.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\controller\RegisterController.java
@@ -18,6 +17,7 @@ C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\dao\S
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\controller\FeedbackController.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\dao\ModuleDaoHibernate.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\model\SurveyResponse.java
+C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\services\AdminService.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\dao\ResponseDaoHibernate.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\model\SessionStatus.java
 C:\Internet Programming\SemProject\healthhubutm\src\main\java\com\secj3303\controller\ResourceController.java

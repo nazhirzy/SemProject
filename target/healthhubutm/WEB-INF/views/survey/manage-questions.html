@@ -1,0 +1,22 @@
+<h2 th:text="'Managing Questions for: ' + ${survey.title}"></h2>
+
+<p>--- Section 1: List Check ---</p>
+<div th:if="${survey.questions != null}">
+    <ul>
+        <li th:each="q : ${survey.questions}">
+            <span th:text="${q.questionText}">Text</span>
+        </li>
+    </ul>
+</div>
+
+<p>--- Section 2: Form Check ---</p>
+<form th:action="@{/professional/survey/edit/__${survey.id}__/questions/add}" 
+      th:object="${newQuestion}" 
+      method="post">
+    
+    <label>Question Text:</label>
+    <input type="text" th:field="*{questionText}" required />
+    
+    <button type="submit">Add Question</button>
+    <a th:href="@{/professional/survey/manage}">Finish</a>
+</form>
