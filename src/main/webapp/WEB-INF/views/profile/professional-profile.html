@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Profile</title>
-    <style></style>
+    
 </head>
 <body>
-
+ <div th:replace="fragments/professional-header :: header"></div>
     <div class="profile-card">
         <div class="avatar">
             <span th:text="${#strings.substring(user.name, 0, 1)}">U</span>

@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <style></style>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+
+
 </head>
 <body>
-
+<div th:replace="fragments/member-header :: header"></div>
     <div class="profile-card">
         <div class="avatar">
             <span th:text="${#strings.substring(user.name, 0, 1)}">U</span>
