@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Survey Result</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+</head>
+<body>
+    <div th:replace="fragments/member-header :: header"></div>
+    
+    <!-- Your page content -->
+    <div style="padding: 40px;">
+<h2>Survey Submitted Successfully!</h2>
+
+<div>
+    <h3>Survey: <span th:text="${survey.title}">Survey Title</span></h3>
+    <p>Description: <span th:text="${survey.description}">Survey Description</span></p>
+    
+    <h3>Your Score: <span th:text="${totalScore}">0</span> / <span th:text="${maxScore}">0</span></h3>
+    <p>Percentage: <span th:text="${#numbers.formatDecimal(percentage, 1, 2)}">0</span>%</p>
+    
+    <!-- Low score message (below 30%) -->
+    <div th:if="${percentage < 30}" style="color: red; font-weight: bold;">
+        <p>This is a low score. You could possibly be in need of more help. 
+           We recommend <a th:href="@{/member/session}">booking a counseling session</a>.</p>
+    </div>
+    
+    <!-- Medium score message (30-50%) -->
+    <div th:if="${percentage >= 30 and percentage < 50}" style="color: orange;">
+        <p>Your score indicates that there might be some areas for concern.</p>
+    </div>
+    
+    <!-- High score message (60%+) -->
+    <div th:if="${percentage >= 50}" style="color: green;">
+        <p>Great score!</p>
+    </div>
+</div>
+
+<br>
+<a th:href="@{/member/surveys}">Back to Surveys</a> |
+<a th:href="@{/member/home}">Back to Home</a>
+</body>
+</html>

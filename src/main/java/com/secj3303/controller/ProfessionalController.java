@@ -131,23 +131,23 @@ public class ProfessionalController {
     // Resource Module 
 
     @GetMapping("/module")
-public String listModules(Model model) {
-    try {
-        List<Module> modules = moduleDao.findAll();
-        System.out.println("Fetched modules: " + modules.size());
-        for (Module m : modules) {
-            System.out.println("Module: " + m.getTitle());
+    public String listModules(Model model) {
+        try {
+            List<Module> modules = moduleDao.findAll();
+            System.out.println("Fetched modules: " + modules.size());
+            for (Module m : modules) {
+                System.out.println("Module: " + m.getTitle());
+            }
+            model.addAttribute("modules", modules);
+            return "module/professional-modules";
+        } catch (Exception e) {
+            // Print full stack trace so we can see the root cause
+            e.printStackTrace();
+            // Optionally add an error message to the model
+            model.addAttribute("errorMessage", "Error loading modules: " + e.getMessage());
+            return "module/professional-modules"; // still returns the page so you see the error
         }
-        model.addAttribute("modules", modules);
-        return "module/professional-modules";
-    } catch (Exception e) {
-        // Print full stack trace so we can see the root cause
-        e.printStackTrace();
-        // Optionally add an error message to the model
-        model.addAttribute("errorMessage", "Error loading modules: " + e.getMessage());
-        return "module/professional-modules"; // still returns the page so you see the error
     }
-}
 
 
 

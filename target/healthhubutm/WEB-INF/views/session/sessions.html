@@ -2,8 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Sessions</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
 </head>
 <body>
+<div th:replace="fragments/member-header :: header"></div>
+    
+    <!-- Your page content -->
+    <div style="padding: 40px;">
+
 <h2>Available Sessions</h2>
 
 <table border="1">

@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${module.title}">Module Title</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
 </head>
 <body>
+
+    <div th:replace="fragments/member-header :: header"></div>
+    
+    <!-- Your page content -->
+    <div style="padding: 40px;">
 <h2 th:text="${module.title}">Module Title</h2>
 
 <p><strong>Description:</strong> <span th:text="${module.description}"></span></p>

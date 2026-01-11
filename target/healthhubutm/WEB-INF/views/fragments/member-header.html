@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+</head>
+<body>
+    <header th:fragment="header" class="header">
+        <div class="logo-section">
+            <div class="logo">+</div>
+            <span class="logo-text">Otawell</span>
+        </div>
+        
+        <nav class="nav-links">
+            <a th:href="@{/member/home}" th:classappend="${#httpServletRequest.requestURI.contains('/member/home')} ? 'active' : ''">Home</a>
+            <a th:href="@{/member/session}" th:classappend="${#httpServletRequest.requestURI.contains('/sessions')} ? 'active' : ''">Sessions</a>
+            <a th:href="@{/member/surveys}" th:classappend="${#httpServletRequest.requestURI.contains('/surveys')} ? 'active' : ''">Survey</a>
+            <a th:href="@{/member/profile}" th:classappend="${#httpServletRequest.requestURI.contains('/profile')} ? 'active' : ''">Profile</a>
+            <a th:href="@{/chat/peer-to-peer}" th:classappend="${#httpServletRequest.requestURI.contains('/peer-to-peer')} ? 'active' : ''">Peer Chat</a>
+        </nav>
+        
+    </header>
+</body>
+</html>

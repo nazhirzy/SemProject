@@ -1,6 +1,10 @@
-<div th:if="${param.success}" style="color: green; font-weight: bold;">
-    Survey submitted successfully!
-</div>
+<head><link rel="stylesheet" th:href="@{/resources/css/style.css}"></head>
+
+<div th:replace="fragments/member-header :: header"></div>
+    
+    <!-- Your page content -->
+    <div style="padding: 40px;">
+
 
 <h2>Available Surveys</h2>
 <div th:each="s : ${surveys}" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px;">

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Professional Home</title></head>
+<head><title>Professional Home</title>
+<link rel="stylesheet" th:href="@{/resources/css/style.css}">
+</head>
 <body>
 <h2>professional Home</h2>
 <p>Welcome, <span th:text="${#authentication.name}"></span>!</p>

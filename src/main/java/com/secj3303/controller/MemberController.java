@@ -104,11 +104,19 @@ public class MemberController {
     }
 
     @PostMapping("/survey/submit/{id}")
-    public String submitSurvey(@PathVariable int id, @RequestParam Map<String, String> params, Authentication auth) {
+    public String submitSurvey(@PathVariable int id, @RequestParam Map<String, String> params, Authentication auth, Model model) {
         Person user = pDao.findByUsername(auth.getName());
         Survey survey = sDao.findSurveyById(id);
         
         int totalScore = 0;
+        int maxScore = 0;
+        
+        // Get all questions for this survey to calculate max score
+        List<SurveyQuestion> questions = survey.getQuestions(); // You'll need this method
+        for (SurveyQuestion q : questions) {
+            maxScore += 5; // Assuming each question max value is 5, adjust accordingly
+        }
+        
         for (String key : params.keySet()) {
             if (key.startsWith("question_")) {
                 totalScore += Integer.parseInt(params.get(key));
@@ -118,7 +126,15 @@ public class MemberController {
         SurveyResponse response = new SurveyResponse(survey, user, totalScore);
         sDao.saveResponse(response);
 
-        return "redirect:/member/surveys?success=true";
+        // Calculate percentage
+        double percentage = (totalScore * 100.0) / maxScore;
+
+        model.addAttribute("survey", survey);
+        model.addAttribute("totalScore", totalScore);
+        model.addAttribute("maxScore", maxScore);
+        model.addAttribute("percentage", percentage);
+        
+        return "survey/survey-result";
     }
 
     // MODULE
