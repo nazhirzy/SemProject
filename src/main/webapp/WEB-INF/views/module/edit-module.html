@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Module</title>
+</head>
+<body>
+<h2>Edit Module</h2>
+
+<form th:action="@{'/professional/module/edit/' + ${module.id}}" th:object="${module}" method="post">
+    <label>Title:</label>
+    <input type="text" th:field="*{title}" required/><br/>
+
+    <label>Description:</label>
+    <input type="text" th:field="*{description}" required/><br/>
+
+    <label>Content:</label>
+    <textarea th:field="*{content}" rows="6" cols="50" required></textarea><br/>
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<a th:href="@{/professional/module}">Back to Modules</a>
+</body>
+</html>

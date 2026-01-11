@@ -5,7 +5,7 @@ import com.secj3303.model.Module;
 
 public interface ModuleDao {
     List<Module> findAll();
-    Module findByCategory(String category);
+    void delete(Module module);
     Module findById(int id);
     void save(Module module);
 }

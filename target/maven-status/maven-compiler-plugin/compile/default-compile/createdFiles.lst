@@ -28,4 +28,3 @@ com\secj3303\dao\SessionDao.class
 com\secj3303\dao\SessionDaoHibernate.class
 com\secj3303\model\SessionStatus.class
 com\secj3303\model\Person.class
-com\secj3303\controller\ResourceController.class
