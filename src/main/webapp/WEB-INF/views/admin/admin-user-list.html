@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
     <title>Otawell - Member Management</title>
     <style>
         body { background: linear-gradient(135deg, #1a0033, #4b0082); color: white; font-family: sans-serif; margin: 0; padding: 40px; }
@@ -13,6 +14,7 @@
         .col-id { flex: 1; } .col-name { flex: 2; } .col-action { flex: 1; text-align: right; }
         .btn-delete { background: #ff4d4d; color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; text-decoration: none; font-size: 12px; }
     </style>
+    <div th:replace="fragments/admin-header :: header"></div>
 </head>
 <body>
     <h1>Member Management</h1>

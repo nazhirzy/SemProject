@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <header th:fragment="header" class="header">
+        <div class="logo-section">
+            <div class="logo">+</div>
+            <span class="logo-text">Otawell</span>
+        </div>
+        
+        <nav class="nav-links">
+            <a th:href="@{/admin/home}" th:classappend="${#httpServletRequest.requestURI.contains('/admin/home')} ? 'active' : ''">Home</a>
+            <a th:href="@{/admin/members}" th:classappend="${#httpServletRequest.requestURI.contains('/members')} ? 'active' : ''">Members</a>
+            <a th:href="@{/admin/professionals}" th:classappend="${#httpServletRequest.requestURI.contains('/professionals')} ? 'active' : ''">Professionals</a>
+            <a th:href="@{/admin/feedback}" th:classappend="${#httpServletRequest.requestURI.contains('/feedback')} ? 'active' : ''">Feedback</a>
+        </nav>
+        
+    </header>
+</body>
+</html>

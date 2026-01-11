@@ -1,4 +1,5 @@
 <head><link rel="stylesheet" th:href="@{/resources/css/style.css}"></head>
+<div th:replace="fragments/professional-header :: header"></div>
 <form th:action="@{/professional/survey/save}" th:object="${survey}" method="post">
     <div>
         <label>Survey Title:</label>

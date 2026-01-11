@@ -5,6 +5,7 @@
     <link rel="stylesheet" th:href="@{/resources/css/style.css}">
 </head>
 <body>
+    <div th:replace="fragments/professional-header :: header"></div>
 <h2>Edit Module</h2>
 
 <form th:action="@{'/professional/module/edit/' + ${module.id}}" th:object="${module}" method="post">

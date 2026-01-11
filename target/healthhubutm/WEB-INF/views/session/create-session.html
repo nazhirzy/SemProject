@@ -5,6 +5,7 @@
     <link rel="stylesheet" th:href="@{/resources/css/style.css}">
 </head>
 <body>
+    <div th:replace="fragments/professional-header :: header"></div>
 <h2>Create a New Session</h2>
 
 <form th:action="@{/professional/session/create}" th:object="${session}" method="post">

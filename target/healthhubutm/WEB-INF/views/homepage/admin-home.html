@@ -4,12 +4,14 @@
 <link rel="stylesheet" th:href="@{/resources/css/style.css}">
 </head>
 <body>
-<h2>professional Home</h2>
-<p>Welcome, <span th:text="${#authentication.name}"></span>!</p>
-<p>Regular user page.</p>
+<div th:replace="fragments/admin-header :: header"></div>
 
-<a th:href="@{/admin/members}">create session</a>
-<a th:href="@{/admin/professionals}">my schedule</a>
+<h2>Admin Home</h2>
+<p>Welcome, <span th:text="${#authentication.name}"></span>!</p>
+<p>Admin page.</p>
+
+<a th:href="@{/admin/members}">member list</a>
+<a th:href="@{/admin/professionals}">professional list</a>
 <a th:href="@{/admin/feedback}">view feedback</a>
 <a th:href="@{/admin/register/professional}">add a mental health professional account</a>
 <a th:href="@{/logout}">Logout</a>
