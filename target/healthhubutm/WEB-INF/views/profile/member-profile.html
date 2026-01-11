@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* 1. Reset and Basic Font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 2. The Faded Purple Background */
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;     /* Center vertically */
+            
+            /* A smooth, faded purple gradient */
+            background: linear-gradient(135deg, #fdfbfd 0%, #e2d1c3 100%); 
+            background-color: #E6E6FA; /* Fallback color */
+            background-image: linear-gradient(to bottom right, #E0C3FC, #8EC5FC);
+            /* Let's settle on a nice Lavender fade */
+            background: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%); /* This is a bit loud */
+            
+            /* RETRY: Soft Lavender Gradient */
+            background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+        }
+
+        /* 3. The White Profile Card */
+        .profile-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        /* 4. Avatar Placeholder (Optional visual) */
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background-color: #e0c3fc;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            margin: 0 auto 20px auto;
+        }
+
+        /* 5. Typography */
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .role-badge {
+            background-color: #f3e5f5;
+            color: #7b1fa2;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .back-link {
+            display: block;
+            margin-top: 25px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <div class="avatar">
+            <span th:text="${#strings.substring(user.name, 0, 1)}">U</span>
+        </div>
+
+        <h2 th:text="${user.name}">John Doe</h2>
+
+        <span class="role-badge" th:text="${user.role}">role</span>
+        
+        <a href="/" class="back-link">← Back to Home</a>
+    </div>
+
+</body>
+</html>

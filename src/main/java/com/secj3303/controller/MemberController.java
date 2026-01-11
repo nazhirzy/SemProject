@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +11,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.secj3303.dao.ModuleDaoHibernate;
 import com.secj3303.dao.PersonDaoHibernate;
 import com.secj3303.dao.SessionDaoHibernate;
-import com.secj3303.dao.SurveyDao;
 import com.secj3303.dao.SurveyDaoHibernate;
 import com.secj3303.model.Person;
-import com.secj3303.model.Module;
 import com.secj3303.model.Sessions;
 import com.secj3303.model.Survey;
-import com.secj3303.model.SurveyQuestion;
 import com.secj3303.model.SurveyResponse;
 
 @Controller
@@ -41,9 +35,6 @@ public class MemberController {
 
     @Autowired
     private SurveyDaoHibernate sDao;
-
-    @Autowired
-    private ModuleDaoHibernate moduleDao;
 
 
     @GetMapping("/home")
@@ -137,26 +128,15 @@ public class MemberController {
         return "survey/survey-result";
     }
 
-    // MODULE
 
+    //Profile
 
-    @GetMapping("/modules")
-    public String listModules(Model model) {
-        List<Module> modules = moduleDao.findAll();
-
-        model.addAttribute("modules", modules);
-        return "module/member-modules";
-    }
-
-
-    @GetMapping("/modules/view/{id}")
-    public String viewModule(@PathVariable int id, Model model) {
-        Module module = moduleDao.findById(id);
-        if (module == null) {
-            return "redirect:/member/modules";
-        }
-        model.addAttribute("module", module);
-        return "module/view-module"; // Thymeleaf template
+    @GetMapping("/profile")
+    public String viewProfile(Model model, Principal principal) {
+        String username = principal.getName();
+        Person user = pDao.findByUsername(username);
+        model.addAttribute("user", user);
+        return "profile/member-profile";
     }
 
 }
