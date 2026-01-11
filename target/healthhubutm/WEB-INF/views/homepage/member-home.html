@@ -1,19 +1,122 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>User Home</title>
-<link rel="stylesheet" th:href="@{/resources/css/style.css}"></head>
-<body>
+<head>
+<title>User Home</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1a0b2e 0%, #480082 50%, #2b004a 100%);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 
-    <div th:replace="fragments/member-header :: header"></div>
-    
-    <!-- Your page content -->
-    <div style="padding: 40px;">
-<h2>User Home</h2>
-<p>Welcome, <span th:text="${#authentication.name}"></span>!</p>
-<p>Regular user page.</p>
-<a th:href="@{/chat/peer-to-peer}">Go to Peer-to-Peer Chat</a><br/>
-<a th:href="@{/logout}">Logout</a>
-<a th:href="@{/feedback}">Submit Feedback</a>
-<a th:href="@{/member/profile}">View Profile</a>
+    .dashboard-container {
+        display: flex;
+        align-items: center;    
+        justify-content: center;
+        flex-grow: 1;           
+        padding: 40px;
+        gap: 80px;              
+    }
+
+    .illustration-area {
+        flex: 1;
+        max-width: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 450px;
+        height: auto;
+        display: block;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+    }
+
+    .menu-area {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    h2.welcome-text {
+        font-size: 2.5rem;
+        font-style: italic;
+        margin-bottom: 30px;
+        text-align: right;
+        line-height: 1.2;
+    }
+
+    h2.welcome-text span {
+        display: block;
+        font-weight: bold;
+    }
+
+    .nav-button {
+        display: block;
+        width: 250px;
+        padding: 15px 0;
+        margin-bottom: 15px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .nav-button.secondary {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.8rem;
+    }
+
+    header {
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <div class="illustration-area">
+            <img th:src="@{/resources/images/home.png}" alt="Welcome Illustration" class="hero-image" />
+        </div>
+
+        <div class="menu-area">
+            <h2 class="welcome-text">
+                Welcome Back, 
+                <span th:text="${#authentication.name}">User!</span>
+            </h2>
+
+            <a th:href="@{/member/modules}" class="nav-button">Modules</a>
+            <a th:href="@{/member/session}" class="nav-button">My Sessions</a>
+            <a th:href="@{/chat/peer-to-peer}" class="nav-button">Peer Forum</a>
+            <a th:href="@{/member/profile}" class="nav-button">Profile</a>
+            <a th:href="@{/feedback}" class="nav-button">Feedback</a>
+            <a  th:href="@{/member/surveys}" class="nav-button">Surveys</a>
+            
+            <a th:href="@{/logout}" class="nav-button secondary">Logout</a>
+        </div>
+
+    </div>
+
 </body>
 </html>

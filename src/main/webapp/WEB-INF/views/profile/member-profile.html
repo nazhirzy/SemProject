@@ -5,21 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+    <style>
+        /* 1. Main Background */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0b2e 0%, #480082 50%, #2b004a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
 
+        /* 2. Centering Container */
+        .page-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+        }
+
+        /* 3. The Glass Card */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 4. Circular Profile Image */
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* Makes it a circle */
+            object-fit: cover;  /* Ensures image doesn't stretch */
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+            background-color: rgba(0,0,0,0.2); /* Fallback color if image missing */
+        }
+
+        /* 5. Typography */
+        h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* 6. Role Badge */
+        .role-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+        }
+        
+        /* Ensures header stays full width at top */
+        header-wrapper {
+            width: 100%;
+        }
+    </style>
 
 </head>
 <body>
-<div th:replace="fragments/member-header :: header"></div>
-    <div class="profile-card">
-        <div class="avatar">
-            <span th:text="${#strings.substring(user.name, 0, 1)}">U</span>
+
+    <div style="width: 100%;">
+        <div th:replace="fragments/member-header :: header"></div>
+    </div>
+
+    <div class="page-content">
+        <div class="profile-card">
+            
+            <img th:src="@{/resources/images/default_avatar.webp}" alt="User Avatar" class="profile-avatar"/>
+
+            <h2 th:text="${user.name}">John Doe</h2>
+
+            <span class="role-badge" th:text="${user.role}">MEMBER</span>
+            
         </div>
-
-        <h2 th:text="${user.name}">John Doe</h2>
-
-        <span class="role-badge" th:text="${user.role}">role</span>
-        
-        <a href="/" class="back-link">← Back to Home</a>
     </div>
 
 </body>

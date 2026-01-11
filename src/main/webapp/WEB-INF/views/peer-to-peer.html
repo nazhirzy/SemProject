@@ -3,18 +3,144 @@
 <head>
     <title>Simple Chat</title>
     <link rel="stylesheet" th:href="@{/resources/css/style.css}">
-    <div th:replace="fragments/member-header :: header"></div>
+    
+    <style>
+        /* 1. Page Background */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0b2e 0%, #480082 50%, #2b004a 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 2. Layout Container */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            padding: 20px;
+            overflow: hidden; /* Prevents scrollbars on the whole page */
+        }
+
+        /* 3. The Chat Box (Left Side) */
+        .chat-card {
+            width: 450px;
+            height: 600px;
+            background: rgba(20, 20, 30, 0.6); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            
+            /* KEY FIX: Flex column ensures form stays at bottom */
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* 4. Messages Area (Takes available space) */
+        .messages-wrapper {
+            flex-grow: 1; /* Pushes the form down */
+            overflow-y: auto; /* Internal scrollbar */
+            margin-bottom: 15px;
+            padding-right: 10px;
+        }
+        
+        .message-bubble {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* 5. The Input Form (Fixed at bottom) */
+        .chat-form {
+            display: flex;
+            position: relative;
+            width: 100%;
+        }
+
+        .chat-form input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            padding-right: 90px; /* Space for button */
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: #333; /* Dark text for inside input */
+            background: white;
+        }
+
+        .chat-form button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            border-radius: 40px;
+            border: none;
+            background: #480082;
+            color: white;
+            font-weight: bold;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+
+        /* 6. Right Side Image */
+        .illustration-area {
+            max-width: 500px;
+        }
+        
+        .illustration-area img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+
+        /* Scrollbar styling */
+        .messages-wrapper::-webkit-scrollbar { width: 6px; }
+        .messages-wrapper::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+    </style>
 </head>
 <body>
-    <h1>Chat</h1>
-    <div th:each="msg : ${messages}">
-        <p th:text="${msg}"></p>
-    </div>
-    <form th:action="@{/chat/peer-to-peer}" method="post">
-        <input type="text" name="message" placeholder="Type your message..." required />
-        <button type="submit">Send</button>
-    </form>
 
-    <a th:href="@{/member/home}">Home</a></p>
+    <div th:replace="fragments/member-header :: header"></div>
+
+    <div class="main-content">
+        
+        <div class="chat-card">
+            <h2 style="margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                Community Chat
+            </h2>
+
+            <div class="messages-wrapper">
+                <div th:each="msg : ${messages}">
+                    <div class="message-bubble">
+                        <span th:text="${msg}"></span>
+                    </div>
+                </div>
+            </div>
+
+            <form th:action="@{/chat/peer-to-peer}" method="post" class="chat-form">
+                <input type="text" name="message" placeholder="Type your message..." required autocomplete="off" />
+                <button type="submit">Send</button>
+            </form>
+        </div>
+
+        <div class="illustration-area">
+            <img th:src="@{/resources/images/peerchat.png}" alt="Chat Illustration" />
+        </div>
+
+    </div>
+
 </body>
 </html>

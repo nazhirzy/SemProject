@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.secj3303.dao.ModuleDaoHibernate;
 import com.secj3303.dao.PersonDaoHibernate;
 import com.secj3303.dao.SessionDaoHibernate;
 import com.secj3303.dao.SurveyDaoHibernate;
+import com.secj3303.model.Module;
 import com.secj3303.model.Person;
-import com.secj3303.model.SurveyQuestion;
 import com.secj3303.model.Sessions;
 import com.secj3303.model.Survey;
 import com.secj3303.model.SurveyQuestion;
@@ -37,6 +38,9 @@ public class MemberController {
 
     @Autowired
     private SurveyDaoHibernate sDao;
+
+    @Autowired
+    private ModuleDaoHibernate moduleDao;
 
 
     @GetMapping("/home")
@@ -129,7 +133,25 @@ public class MemberController {
         
         return "survey/survey-result";
     }
+    //Modules
+    @GetMapping("/modules")
+    public String listModules(Model model) {
+        List<Module> modules = moduleDao.findAll();
 
+        model.addAttribute("modules", modules);
+        return "module/member-modules";
+    }
+    
+
+    @GetMapping("/modules/view/{id}")
+    public String viewModule(@PathVariable int id, Model model) {
+        Module module = moduleDao.findById(id);
+        if (module == null) {
+            return "redirect:/member/modules";
+        }
+        model.addAttribute("module", module);
+        return "module/view-module"; // Thymeleaf template
+    }
 
     //Profile
 

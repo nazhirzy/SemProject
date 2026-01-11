@@ -1,18 +1,121 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Professional Home</title>
-<link rel="stylesheet" th:href="@{/resources/css/style.css}">
+<head>
+<title>Professional Home</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1a0b2e 0%, #480082 50%, #2b004a 100%);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard-container {
+        display: flex;
+        align-items: center;    
+        justify-content: center;
+        flex-grow: 1;           
+        padding: 40px;
+        gap: 80px;              
+    }
+
+    .illustration-area {
+        flex: 1;
+        max-width: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 450px;
+        height: auto;
+        display: block;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+    }
+
+    .menu-area {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    h2.welcome-text {
+        font-size: 2.5rem;
+        font-style: italic;
+        margin-bottom: 30px;
+        text-align: right;
+        line-height: 1.2;
+    }
+
+    h2.welcome-text span {
+        display: block;
+        font-weight: bold;
+    }
+
+    .nav-button {
+        display: block;
+        width: 250px;
+        padding: 15px 0;
+        margin-bottom: 15px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .nav-button.secondary {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.8rem;
+    }
+
+    header {
+        width: 100%;
+    }
+</style>
 </head>
 <body>
-    <div th:replace="fragments/professional-header :: header"></div>
-<h2>professional Home</h2>
-<p>Welcome, <span th:text="${#authentication.name}"></span>!</p>
-<p>Regular user page.</p>
+    <div class="dashboard-container">
+        
+        <div class="illustration-area">
+            <img th:src="@{/resources/images/profhome.png}" alt="Professional Dashboard" class="hero-image" />
+        </div>
 
-<a th:href="@{/professional/session/create}">create session</a>
-<a th:href="@{/professional/session/my-schedule}">my schedule</a>
-<a th:href="@{/professional/survey/create}">create survey</a>
-<a th:href="@{/professional/module}">modules</a>
-<a th:href="@{/logout}">Logout</a>
+        <div class="menu-area">
+            <h2 class="welcome-text">
+                Welcome, 
+                <span th:text="${#authentication.name}">Professional</span>
+            </h2>
+
+            <a th:href="@{/professional/session/create}" class="nav-button">Create Session</a>
+            <a th:href="@{/professional/session/my-schedule}" class="nav-button">My Schedule</a>
+            <a th:href="@{/professional/survey/create}" class="nav-button">Create Survey</a>
+            <a th:href="@{/professional/module}" class="nav-button">Modules</a>
+            <a th:href="@{/professional/profile}" class="nav-button">Profile</a>
+            
+            <a th:href="@{/logout}" class="nav-button secondary">Logout</a>
+        </div>
+
+    </div>
+
 </body>
 </html>

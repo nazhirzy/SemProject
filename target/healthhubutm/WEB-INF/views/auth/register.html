@@ -1,16 +1,139 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Register</title>
-<link rel="stylesheet" th:href="@{/resources/css/style.css}">
+<head>
+<title>Register</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1a0b2e 0%, #480082 50%, #2b004a 100%);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    /* 2. Container */
+    .container {
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .logo-header {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 40px 30px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1rem;
+        color: #e0e0e0;
+        text-align: left; 
+        padding-left: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.9);
+        font-size: 1rem;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+    
+    button {
+        width: 100%; 
+        padding: 12px;
+        border-radius: 50px;
+        border: 1px solid rgba(255,255,255,0.1);
+        background: rgba(0, 0, 0, 0.25);
+        color: white;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        cursor: pointer;
+        text-transform: uppercase;
+        margin-top: 10px;
+        transition: background 0.3s;
+    }
+
+    button:hover {
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    /* 7. Footer & Errors */
+    .footer-links {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: #ccc;
+    }
+
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .error-msg {
+        color: #ff6b6b;
+        margin-top: 10px;
+        background: rgba(0,0,0,0.2);
+        padding: 10px;
+        border-radius: 10px;
+    }
+</style>
 </head>
 <body>
-<h2>Register</h2>
-<form th:action="@{/register}" th:object="${user}" method="post">
-    <label>Username:</label><input type="text" th:field="*{name}" required/><br/>
-    <label>Password:</label><input type="password" th:field="*{password}" required/><br/>
-    <button type="submit">Register</button>
-</form>
-<div th:if="${error}" style="color:red" th:text="${error}"></div>
-<p>Already have an account? <a th:href="@{/login}">Login</a></p>
+
+<div class="container">
+    <div class="logo-header">
+        <span>🛡️</span> Otawell
+    </div>
+
+    <div class="glass-card">
+        <h2 style="margin-top: 0;">Create Account</h2>
+        
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            
+            <label>Username</label>
+            <input type="text" th:field="*{name}" placeholder="Choose a username" required/>
+            
+            <label>Password</label>
+            <input type="password" th:field="*{password}" placeholder="Create a password" required/>
+            
+            <button type="submit">Register</button>
+        </form>
+
+        <div th:if="${error}" class="error-msg" th:text="${error}"></div>
+
+        <div class="footer-links">
+            <p>Already have an account? <a th:href="@{/login}">Login</a></p>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

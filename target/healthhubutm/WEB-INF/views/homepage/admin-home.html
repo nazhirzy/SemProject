@@ -1,19 +1,114 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Professional Home</title>
-<link rel="stylesheet" th:href="@{/resources/css/style.css}">
+<head>
+<title>Admin Home</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1a0b2e 0%, #480082 50%, #2b004a 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 500px; /* Slightly wider to fit long text */
+        text-align: center;
+        padding: 20px;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Spacing between buttons */
+    }
+
+    h2 {
+        margin-top: 0;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .welcome-msg {
+        color: #e0e0e0;
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+    }
+
+    /* Button Styles */
+    .admin-btn {
+        display: block;
+        width: 100%;
+        padding: 15px 20px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        box-sizing: border-box; /* Ensures padding doesn't widen element */
+    }
+
+    .admin-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Specific style for Logout to make it distinct */
+    .logout-btn {
+        background: transparent;
+        border: 1px solid rgba(255, 107, 107, 0.3);
+        color: #ffb3b3;
+        margin-top: 10px;
+    }
+    
+    .logout-btn:hover {
+        background: rgba(255, 107, 107, 0.1);
+        border-color: rgba(255, 107, 107, 0.8);
+    }
+
+</style>
 </head>
 <body>
-<div th:replace="fragments/admin-header :: header"></div>
 
-<h2>Admin Home</h2>
-<p>Welcome, <span th:text="${#authentication.name}"></span>!</p>
-<p>Admin page.</p>
+    <div class="container">
+        <div class="glass-card">
+            
+            <h2>Admin Home</h2>
+            
+            <div class="welcome-msg">
+                <p>Welcome, <span th:text="${#authentication.name}" style="font-weight:bold; color: #fff;">Admin</span>!</p>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Manage your members and professionals here.</p>
+            </div>
 
-<a th:href="@{/admin/members}">member list</a>
-<a th:href="@{/admin/professionals}">professional list</a>
-<a th:href="@{/admin/feedback}">view feedback</a>
-<a th:href="@{/admin/register/professional}">add a mental health professional account</a>
-<a th:href="@{/logout}">Logout</a>
+            <a th:href="@{/admin/members}" class="admin-btn">Member List</a>
+            
+            <a th:href="@{/admin/professionals}" class="admin-btn">Professional List</a>
+            
+            <a th:href="@{/admin/feedback}" class="admin-btn">View Feedback</a>
+            
+            <a th:href="@{/admin/register/professional}" class="admin-btn">Add Mental Health Professional</a>
+            
+            <a th:href="@{/logout}" class="admin-btn logout-btn">Logout</a>
+            
+        </div>
+    </div>
+
 </body>
 </html>
